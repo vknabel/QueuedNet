@@ -14,8 +14,8 @@ public class Net<T: NetNodeRawType> {
     public let initials: [T]
     
     public init(builder: NetBuilder<T>) {
-        self.nodes = builder.nodes
-        self.initials = builder.initials
+        self.nodes = builder.generateNodes()
+        self.initials = builder.rawInitials
     }
     
     public func run() {

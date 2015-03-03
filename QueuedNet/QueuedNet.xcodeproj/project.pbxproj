@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA962A7D1AA5EDDD00A60E71 /* NetRawTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA962A7C1AA5EDDD00A60E71 /* NetRawTransition.swift */; };
 		DADF44BA1AA4B44300CFD25B /* QueuedNet.h in Headers */ = {isa = PBXBuildFile; fileRef = DADF44B91AA4B44300CFD25B /* QueuedNet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DADF44C01AA4B44300CFD25B /* QueuedNet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DADF44B41AA4B44300CFD25B /* QueuedNet.framework */; };
 		DADF44C71AA4B44300CFD25B /* QueuedNetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADF44C61AA4B44300CFD25B /* QueuedNetTests.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA962A7C1AA5EDDD00A60E71 /* NetRawTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRawTransition.swift; sourceTree = "<group>"; };
 		DADF44B41AA4B44300CFD25B /* QueuedNet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QueuedNet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADF44B81AA4B44300CFD25B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADF44B91AA4B44300CFD25B /* QueuedNet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QueuedNet.h; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				DADF44D21AA4B49500CFD25B /* Net.swift */,
 				DADF44D41AA4B4AF00CFD25B /* NetNode.swift */,
 				DADF44D61AA4B4C600CFD25B /* NetTransition.swift */,
+				DA962A7C1AA5EDDD00A60E71 /* NetRawTransition.swift */,
 				DADF44B71AA4B44300CFD25B /* Supporting Files */,
 			);
 			path = QueuedNet;
@@ -227,6 +230,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DADF44D71AA4B4C600CFD25B /* NetTransition.swift in Sources */,
+				DA962A7D1AA5EDDD00A60E71 /* NetRawTransition.swift in Sources */,
 				DADF44D11AA4B47E00CFD25B /* NetBuilder.swift in Sources */,
 				DADF44D31AA4B49500CFD25B /* Net.swift in Sources */,
 				DADF44D51AA4B4AF00CFD25B /* NetNode.swift in Sources */,
@@ -420,6 +424,7 @@
 				DADF44CC1AA4B44300CFD25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DADF44CD1AA4B44300CFD25B /* Build configuration list for PBXNativeTarget "QueuedNetTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +433,7 @@
 				DADF44CF1AA4B44300CFD25B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -14,32 +14,38 @@ public class NetBuilder<T: NetNodeRawType> {
     
     public typealias BuildClosure = (NetBuilder<T>) -> ()
     
-    public var nodes: [T:NetNode<T>] = [:]
-    public var initials: [T]
+    internal var rawNodes: [T] = []
+    internal var rawTransitions: [NetRawTransition<T>] = []
+    internal var rawInitials: [T]
     
     public init(initials: [T], buildClosure: BuildClosure) {
         assert(initials.count > 0, "A net must always have at least one initial node.")
-        self.initials = initials
+        self.rawInitials = initials
         buildClosure(self)
-        assert(nodes(initials).reduce(true, combine: { (b: Bool, i: NetNode<T>) -> Bool in
+        let inits = generateNodes().values.filter { contains(initials, $0.rawValue) }
+        assert(reduce(inits, true, { (b: Bool, i: NetNode<T>) -> Bool in
             b && i.outgoingTransition != nil
         }), "All initial nodes must have outgoing transitions.")
     }
     
     public func addTransition(#from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
-        let transition = NetTransition<T>(inputNodes: nodes(from), outputNodes: nodes(to), transitionHandler: perform, errorHandler: error)
+        self.rawNodes.extend(from)
+        self.rawNodes.extend(to)
+        let transition = NetRawTransition<T>(inputNodes: from, outputNodes: to, transitionHandler: perform, errorHandler: error)
+        rawTransitions.append(transition)
     }
     
-    public func nodes(raw: [T]) -> [NetNode<T>] {
-        return raw.map { r in
-            if let n = self.nodes[r] {
-                return n
-            }
-            else {
-                self.nodes[r] = NetNode(rawValue: r)!
-                return self.nodes[r]!
-            }
+    func generateNodes() -> [T: NetNode<T>] {
+        let nodes = rawNodes.map { NetNode<T>(rawValue: $0)! }
+        var nodeHash = [T: NetNode<T>]()
+        for n in nodes {
+            nodeHash[n.rawValue] = n
         }
+        
+        rawTransitions.map { (rt: NetRawTransition<T>) in
+            rt.transtition(nodeHash)
+        }
+        return nodeHash
     }
     
 }
