@@ -9,7 +9,7 @@
 import Foundation
 
 /// A Net Builder is used for configuring multiple Nets.
-public struct NetBuilder<T: NetNodeRawType> {
+public class NetBuilder<T: NetNodeRawType> {
     public typealias TransitionHandler = NetTransition<T>.TransitionHandler
     public typealias ErrorHandler = NetTransition<T>.ErrorHandler
     
@@ -44,7 +44,7 @@ public struct NetBuilder<T: NetNodeRawType> {
     :param: perform The transition handler to perform the transition. Will be executed in the transition's own thread.
     :param: error The error handler to resolve input nodes errors. Will be executed in the transition's own thread.
     */
-    public mutating func addTransition(#from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
+    public func addTransition(#from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
         self.rawNodes.extend(from)
         self.rawNodes.extend(to)
         let transition = NetRawTransition<T>(inputNodes: from, outputNodes: to, transitionHandler: perform, errorHandler: error)
