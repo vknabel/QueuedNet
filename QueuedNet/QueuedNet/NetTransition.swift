@@ -8,11 +8,16 @@
 
 import Foundation
 
+/// A transition between nodes. Will be performed when all input nodes are triggered.
 public class NetTransition<T: NetNodeRawType> {
+    /// The transition handler to be performed in its own queue.
     public typealias TransitionHandler = (NetTransition<T>) -> ()
+    /// The error handler to be performed when a input node fails.
     public typealias ErrorHandler = (NetNode<T>) -> ()
     
+    /// All input nodes to be required in triggered state.
     public let inputNodes: [NetNode<T>] = []
+    /// All output nodes to be run after the transition.
     public let outputNodes: [NetNode<T>] = []
     private let transitionHandler: TransitionHandler?
     private let errorHandler: ErrorHandler?
@@ -43,7 +48,8 @@ public class NetTransition<T: NetNodeRawType> {
         }
     }
     
-    public func run() {
+    /// Runs if all input nodes are set to triggered.
+    internal func run() {
         self.queue.addOperationWithBlock({ () -> Void in
             let allTriggered = !self.isTransitioning && self.inputNodes.reduce(true) { (b: Bool, n: NetNode<T>) -> Bool in
                 b && n.state == .Triggered
@@ -64,7 +70,8 @@ public class NetTransition<T: NetNodeRawType> {
         self.queue.waitUntilAllOperationsAreFinished()
     }
     
-    public func handleError(node: NetNode<T>) {
+    /// Runs the error handler with the failed node.
+    internal func handleError(node: NetNode<T>) {
         if node.state == .Error {
             self.errorHandler?(node)
             assert(node.state == .Error, "The failed node could not be restored.")

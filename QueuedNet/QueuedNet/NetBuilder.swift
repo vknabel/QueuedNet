@@ -8,16 +8,24 @@
 
 import Foundation
 
-public class NetBuilder<T: NetNodeRawType> {
+/// A Net Builder is used for configuring multiple Nets.
+public struct NetBuilder<T: NetNodeRawType> {
     public typealias TransitionHandler = NetTransition<T>.TransitionHandler
     public typealias ErrorHandler = NetTransition<T>.ErrorHandler
     
+    /// A closure to configure the Builder.
     public typealias BuildClosure = (NetBuilder<T>) -> ()
     
     internal var rawNodes: [T] = []
     internal var rawTransitions: [NetRawTransition<T>] = []
     internal var rawInitials: [T]
     
+    /**
+    Initializes a net builder.
+    
+    :param: initials The raw values for all initial states.
+    :param: buildClosure The closure to configure the net builder.
+    */
     public init(initials: [T], buildClosure: BuildClosure) {
         assert(initials.count > 0, "A net must always have at least one initial node.")
         self.rawInitials = initials
@@ -28,14 +36,27 @@ public class NetBuilder<T: NetNodeRawType> {
         }), "All initial nodes must have outgoing transitions.")
     }
     
-    public func addTransition(#from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
+    /**
+    Adds a transition and implicitly missing Nodes.
+    
+    :param: from The transition's input nodes' raw values. If all nodes' state is Triggered, the transition will be performed.
+    :param: to The transition's output nodes' raw values. All nodes' states will be set to Running once the transition has finished.
+    :param: perform The transition handler to perform the transition. Will be executed in the transition's own thread.
+    :param: error The error handler to resolve input nodes errors. Will be executed in the transition's own thread.
+    */
+    public mutating func addTransition(#from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
         self.rawNodes.extend(from)
         self.rawNodes.extend(to)
         let transition = NetRawTransition<T>(inputNodes: from, outputNodes: to, transitionHandler: perform, errorHandler: error)
         rawTransitions.append(transition)
     }
     
-    func generateNodes() -> [T: NetNode<T>] {
+    /**
+    Generates new node objects.
+    
+    :returns: Instances for all raw nodes.
+    */
+    internal func generateNodes() -> [T: NetNode<T>] {
         let nodes = rawNodes.map { NetNode<T>(rawValue: $0)! }
         var nodeHash = [T: NetNode<T>]()
         for n in nodes {
