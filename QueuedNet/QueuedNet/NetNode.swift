@@ -183,3 +183,16 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, Printable {
         self._state = .Error
     }
 }
+
+public extension NetNode {
+    
+    /**
+    Guarantees a state handler to be run on internal state changes in the node's default operation queue.
+    
+    :param: state The state, the state handler should be run in.
+    :param: perform The state handler to be performed.
+    */
+    public func on(state s: NetNodeState, perform h: StateHandler) {
+        self.on(state: s, perform: h, queue: self.operationQueue)
+    }
+}
