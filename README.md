@@ -9,15 +9,15 @@ enum Test: String, Printable, NetNodeRawType {
     var description: String { return self.rawValue }
 }
 
-let net = Net<Test>(initials: [.A]) { (builder: NetBuilder<Test>) -> () in
-    builder.addTransition(from: [.A], to: [.B, .C], perform: { (n: NetTransition<Test>) -> () in
+let net = Net<Test>(initials: [.A]) { builder in
+    builder.addTransition(from: [.A], to: [.B, .C], perform: { _ in
         println("t1")
-      }, error: { (n: NetNode<Test>) -> () in
+      }, error: { _ in
         println("e1")
     })
-    builder.addTransition(from: [.B, .C], to: [.D], perform: { (n: NetTransition<Test>) -> () in
+    builder.addTransition(from: [.B, .C], to: [.D], perform: { _ in
         println("t2,3")
-      }, error: { (n: NetNode<Test>) -> () in
+      }, error: { _ in
         println("e2")
     })
 }
