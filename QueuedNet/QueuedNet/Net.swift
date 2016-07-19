@@ -14,7 +14,7 @@ A Net represents its own context to be runned. All Nodes and Transitions run in 
 public class Net<T: NetNodeRawType> {
     
     /// All Nodes inside the Net.
-    public let nodes: [T:NetNode<T>] = [:]
+    public let nodes: [T:NetNode<T>]
     /// The raw values for the initial states.
     public let initials: [T]
     

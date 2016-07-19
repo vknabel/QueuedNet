@@ -30,8 +30,8 @@ public class NetBuilder<T: NetNodeRawType> {
         assert(initials.count > 0, "A net must always have at least one initial node.")
         self.rawInitials = initials
         buildClosure(self)
-        let inits = generateNodes().values.filter { contains(initials, $0.rawValue) }
-        assert(reduce(inits, true, { (b: Bool, i: NetNode<T>) -> Bool in
+        let inits = generateNodes().values.filter { initials.contains($0.rawValue) }
+        assert(inits.reduce(true, combine: { (b: Bool, i: NetNode<T>) -> Bool in
             b && i.outgoingTransition != nil
         }), "All initial nodes must have outgoing transitions.")
     }
@@ -44,9 +44,9 @@ public class NetBuilder<T: NetNodeRawType> {
     :param: perform The transition handler to perform the transition. Will be executed in the transition's own thread.
     :param: error The error handler to resolve input nodes errors. Will be executed in the transition's own thread.
     */
-    public func addTransition(#from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
-        self.rawNodes.extend(from)
-        self.rawNodes.extend(to)
+    public func addTransition(from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
+        self.rawNodes.appendContentsOf(from)
+        self.rawNodes.appendContentsOf(to)
         let transition = NetRawTransition<T>(inputNodes: from, outputNodes: to, transitionHandler: perform, errorHandler: error)
         rawTransitions.append(transition)
     }
@@ -63,7 +63,7 @@ public class NetBuilder<T: NetNodeRawType> {
             nodeHash[n.rawValue] = n
         }
         
-        rawTransitions.map { (rt: NetRawTransition<T>) in
+        rawTransitions.forEach { (rt: NetRawTransition<T>) in
             rt.transtition(nodeHash)
         }
         return nodeHash

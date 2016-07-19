@@ -12,8 +12,8 @@ internal struct NetRawTransition<T: NetNodeRawType> {
     internal typealias TransitionHandler = (NetTransition<T>) -> ()
     internal typealias ErrorHandler = (NetNode<T>) -> ()
     
-    internal let inputNodes: [T] = []
-    internal let outputNodes: [T] = []
+    internal let inputNodes: [T]
+    internal let outputNodes: [T]
     internal let transitionHandler: TransitionHandler?
     internal let errorHandler: ErrorHandler?
     

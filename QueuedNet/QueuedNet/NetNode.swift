@@ -9,10 +9,10 @@
 import Foundation
 
 /// All node raw types must implement this protocol. Nodes raw types have to be printable for better debug messages.
-public protocol NetNodeRawType: Printable, Hashable { }
+public protocol NetNodeRawType: CustomStringConvertible, Hashable { }
 
 /// The possible states of nodes. Nodes can only change their state if all handlers terminated.
-public enum NetNodeState: String, Printable {
+public enum NetNodeState: String, CustomStringConvertible {
     /// The ready state is the default state of all nodes. Only ready nodes can be run.
     case Ready = "Ready"
     /// The running state. This state will automatically turn to finished if all handlers have terminated.
@@ -31,7 +31,7 @@ public enum NetNodeState: String, Printable {
 }
 
 /// A net's node. Nodes can only have up to one incoming and outgoing transition.
-public class NetNode<T: NetNodeRawType>: RawRepresentable, Printable {
+public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertible {
     public typealias RawValue = T
     /// State handlers are always performed on referred state changes.
     /// If a state handler is blocked, it will also block the whole node for state changes.
@@ -136,10 +136,10 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, Printable {
         self.operationQueue.addOperationWithBlock { () -> Void in
             let allops = (self._handlers[self.state]) ?? []
             for op in allops {
-                self._queueCounter++
+                self._queueCounter += 1
                 op.1.addOperationWithBlock {
                     op.0(self)
-                    self._queueCounter--
+                    self._queueCounter -= 1
                 }
             }
             if allops.count == 0 {

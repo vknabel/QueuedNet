@@ -16,9 +16,9 @@ public class NetTransition<T: NetNodeRawType> {
     public typealias ErrorHandler = (NetNode<T>) -> ()
     
     /// All input nodes to be required in triggered state.
-    public let inputNodes: [NetNode<T>] = []
+    public let inputNodes: [NetNode<T>]
     /// All output nodes to be run after the transition.
-    public let outputNodes: [NetNode<T>] = []
+    public let outputNodes: [NetNode<T>]
     private let transitionHandler: TransitionHandler?
     private let errorHandler: ErrorHandler?
     

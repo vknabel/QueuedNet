@@ -4,18 +4,18 @@ QueuedNet is a Swift framework to parallelize applications more declaratively.
 ## Example
 ```swift
 enum Test: String, Printable, NetNodeRawType {
-    case A="A", B="B", C="C", D="D"
+    case a, b, c, d
     
     var description: String { return self.rawValue }
 }
 
-let net = Net<Test>(initials: [.A]) { builder in
-    builder.addTransition(from: [.A], to: [.B, .C], perform: { _ in
+let net = Net<Test>(initials: [.a]) { builder in
+    builder.addTransition(from: [.a], to: [.b, .c], perform: { _ in
         println("t1")
       }, error: { _ in
         println("e1")
     })
-    builder.addTransition(from: [.B, .C], to: [.D], perform: { _ in
+    builder.addTransition(from: [.B, .c], to: [.d], perform: { _ in
         println("t2,3")
       }, error: { _ in
         println("e2")
