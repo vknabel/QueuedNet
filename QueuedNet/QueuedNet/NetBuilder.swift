@@ -23,8 +23,8 @@ public class NetBuilder<T: NetNodeRawType> {
     /**
     Initializes a net builder.
     
-    :param: initials The raw values for all initial states.
-    :param: buildClosure The closure to configure the net builder.
+    - Parameter initials The raw values for all initial states.
+    - Parameter buildClosure The closure to configure the net builder.
     */
     public init(initials: [T], buildClosure: BuildClosure) {
         assert(initials.count > 0, "A net must always have at least one initial node.")
@@ -39,10 +39,10 @@ public class NetBuilder<T: NetNodeRawType> {
     /**
     Adds a transition and implicitly missing Nodes.
     
-    :param: from The transition's input nodes' raw values. If all nodes' state is Triggered, the transition will be performed.
-    :param: to The transition's output nodes' raw values. All nodes' states will be set to Running once the transition has finished.
-    :param: perform The transition handler to perform the transition. Will be executed in the transition's own thread.
-    :param: error The error handler to resolve input nodes errors. Will be executed in the transition's own thread.
+    - Parameter from The transition's input nodes' raw values. If all nodes' state is Triggered, the transition will be performed.
+    - Parameter to The transition's output nodes' raw values. All nodes' states will be set to Running once the transition has finished.
+    - Parameter perform The transition handler to perform the transition. Will be executed in the transition's own thread.
+    - Parameter error The error handler to resolve input nodes errors. Will be executed in the transition's own thread.
     */
     public func addTransition(from: [T], to: [T], perform: TransitionHandler? = nil, error: ErrorHandler? = nil) {
         self.rawNodes.appendContentsOf(from)
@@ -54,7 +54,7 @@ public class NetBuilder<T: NetNodeRawType> {
     /**
     Generates new node objects.
     
-    :returns: Instances for all raw nodes.
+    - Returns Instances for all raw nodes.
     */
     internal func generateNodes() -> [T: NetNode<T>] {
         let nodes = rawNodes.map { NetNode<T>(rawValue: $0)! }

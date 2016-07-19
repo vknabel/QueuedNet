@@ -107,7 +107,7 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     /**
     Creates a new node instance.
     
-    :param: rawValue The raw value to be represented.
+    - Parameter rawValue The raw value to be represented.
     */
     public required init?(rawValue: T) {
         self._rawValue = rawValue
@@ -116,9 +116,9 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     /**
     Guarantees a state handler to be run on internal state changes in a given queue.
     
-    :param: state The state, the state handler should be run in.
-    :param: perform The state handler to be performed.
-    :param: queue The queue the state handler should be run in.
+    - Parameter state The state, the state handler should be run in.
+    - Parameter perform The state handler to be performed.
+    - Parameter queue The queue the state handler should be run in.
     */
     public func on(state s: NetNodeState, perform h: StateHandler, queue: NSOperationQueue) {
         if _handlers[s] == nil {
@@ -189,8 +189,8 @@ public extension NetNode {
     /**
     Guarantees a state handler to be run on internal state changes in the node's default operation queue.
     
-    :param: state The state, the state handler should be run in.
-    :param: perform The state handler to be performed.
+    - Parameter state The state, the state handler should be run in.
+    - Parameter perform The state handler to be performed.
     */
     public func on(state s: NetNodeState, perform h: StateHandler) {
         self.on(state: s, perform: h, queue: self.operationQueue)
