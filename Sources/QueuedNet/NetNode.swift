@@ -39,7 +39,7 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     public typealias StateHandler = (NetNode<T>) -> ()
     
     /// The operation queue state handlers are performed by default.
-    public var operationQueue: NSOperationQueue = NSOperationQueue()
+    public var operationQueue: OperationQueue = OperationQueue()
     
     /// The state.
     private var _state: NetNodeState = .Ready {
@@ -53,21 +53,21 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     /// The represented value.
     private var _rawValue: T
     /// Stores all handlers for each node state.
-    private var _handlers: [NetNodeState:[(StateHandler, NSOperationQueue)]] = [.Ready:[], .Running:[], .Finished:[], .Error:[], .Triggered: []]
+    private var _handlers: [NetNodeState:[(StateHandler, OperationQueue)]] = [.Ready:[], .Running:[], .Finished:[], .Error:[], .Triggered: []]
     
     /// Used to determine, wether all handler's have been run.
     private var _queueCounter: Int = 0 {
         didSet {
-            self.operationQueue.addOperationWithBlock {
+            self.operationQueue.addOperation {
                 if self._queueCounter == 0 {
-                    self.operationQueue.addOperationWithBlock {
+                    self.operationQueue.addOperation {
                         switch self.state {
                         case .Running:
                             self._state = .Finished
                         case .Triggered:
                             self.outgoingTransition?.run()
                         case .Error:
-                            self.outgoingTransition?.handleError(self)
+                            self.outgoingTransition?.handleError(forNode: self)
                         default:
                             break
                         }
@@ -120,7 +120,7 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     - Parameter perform The state handler to be performed.
     - Parameter queue The queue the state handler should be run in.
     */
-    public func on(state s: NetNodeState, perform h: StateHandler, queue: NSOperationQueue) {
+    public func on(state s: NetNodeState, perform h: @escaping StateHandler, queue: OperationQueue) {
         if _handlers[s] == nil {
             self._handlers[s] = [(h, queue)]
         }
@@ -133,11 +133,11 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     Will be invoked on state changes.
     */
     private func stateDidChange() {
-        self.operationQueue.addOperationWithBlock { () -> Void in
+        self.operationQueue.addOperation { () -> Void in
             let allops = (self._handlers[self.state]) ?? []
             for op in allops {
                 self._queueCounter += 1
-                op.1.addOperationWithBlock {
+                op.1.addOperation {
                     op.0(self)
                     self._queueCounter -= 1
                 }
@@ -192,7 +192,7 @@ public extension NetNode {
     - Parameter state The state, the state handler should be run in.
     - Parameter perform The state handler to be performed.
     */
-    public func on(state s: NetNodeState, perform h: StateHandler) {
+    public func on(state s: NetNodeState, perform h: @escaping StateHandler) {
         self.on(state: s, perform: h, queue: self.operationQueue)
     }
 }

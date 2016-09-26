@@ -22,8 +22,8 @@ public class NetTransition<T: NetNodeRawType> {
     private let transitionHandler: TransitionHandler?
     private let errorHandler: ErrorHandler?
     
-    private let queue: NSOperationQueue = {
-        let q = NSOperationQueue()
+    private let queue: OperationQueue = {
+        let q = OperationQueue()
         q.maxConcurrentOperationCount = 1
         return q
     }()
@@ -50,7 +50,7 @@ public class NetTransition<T: NetNodeRawType> {
     
     /// Runs if all input nodes are set to triggered.
     internal func run() {
-        self.queue.addOperationWithBlock({ () -> Void in
+        self.queue.addOperation({ () -> Void in
             let allTriggered = !self.isTransitioning && self.inputNodes.reduce(true) { (b: Bool, n: NetNode<T>) -> Bool in
                 b && n.state == .Triggered
             }
@@ -71,7 +71,7 @@ public class NetTransition<T: NetNodeRawType> {
     }
     
     /// Runs the error handler with the failed node.
-    internal func handleError(node: NetNode<T>) {
+    internal func handleError(forNode node: NetNode<T>) {
         if node.state == .Error {
             self.errorHandler?(node)
             assert(node.state == .Error, "The failed node could not be restored.")

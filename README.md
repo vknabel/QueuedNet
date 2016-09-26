@@ -13,12 +13,12 @@ let net = Net<Test>(initials: [.a]) { builder in
     builder.addTransition(from: [.a], to: [.b, .c], perform: { _ in
         println("t1")
       }, error: { _ in
-        println("e1")
+        print("e1")
     })
-    builder.addTransition(from: [.B, .c], to: [.d], perform: { _ in
+    builder.addTransition(from: [.b, .c], to: [.d], perform: { _ in
         println("t2,3")
       }, error: { _ in
-        println("e2")
+        print("e2")
     })
 }
 ```

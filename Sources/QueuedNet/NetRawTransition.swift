@@ -34,8 +34,8 @@ internal struct NetRawTransition<T: NetNodeRawType> {
             }
             return ns
         }
-        return NetTransition<T>(inputNodes: getNodes(inputNodes),
-            outputNodes: getNodes(outputNodes),
+        return NetTransition<T>(inputNodes: getNodes(raws: inputNodes),
+            outputNodes: getNodes(raws: outputNodes),
             transitionHandler: transitionHandler,
             errorHandler: errorHandler)
     }

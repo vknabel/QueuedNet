@@ -1,11 +1,11 @@
 // Playground - noun: a place where people can play
 
-import XCPlayground
 import QueuedNet
+import XCPlayground
 
 var str = "Hello, playground"
 
-enum Test: String, Printable, NetNodeRawType {
+enum Test: String, NetNodeRawType {
     case a, b, c, d
     
     var description: String {
@@ -28,9 +28,9 @@ let net = Net<Test>(initials: [.a]) { (builder: NetBuilder<Test>) -> () in
 }
 net.run()
 let a = net.nodes[.A]!
-println(a)
+print(a)
 a.triggerTransition()
-println(a)
+print(a)
 sleep(1)
 net.nodes[.B]!.description
 sleep(1)
