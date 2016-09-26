@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>NetNode Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/NetNode" class="dashAnchor"></a>
+    <a title="NetNode Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">QueuedNet Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">QueuedNet Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        NetNode Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Net.html">Net</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetBuilder.html">NetBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetNode.html">NetNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NetTransition.html">NetTransition</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/NetNodeState.html">NetNodeState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P9QueuedNet14NetNodeRawType">NetNodeRawType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>NetNode</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">NetNode</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P9QueuedNet14NetNodeRawType">NetNodeRawType</a></span><span class="o">&gt;</span><span class="p">:</span> <span class="kt">RawRepresentable</span><span class="p">,</span> <span class="kt">CustomStringConvertible</span></code></pre>
+
+                </div>
+              </div>
+            <p>A net&rsquo;s node. Nodes can only have up to one incoming and outgoing transition.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9QueuedNet7NetNode14operationQueueCSo14OperationQueue"></a>
+                    <a name="//apple_ref/swift/Property/operationQueue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9QueuedNet7NetNode14operationQueueCSo14OperationQueue">operationQueue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The operation queue state handlers are performed by default.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">operationQueue</span><span class="p">:</span> <span class="kt">OperationQueue</span> <span class="o">=</span> <span class="kt">OperationQueue</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C9QueuedNet7NetNode12StateHandler"></a>
+                    <a name="//apple_ref/swift/Alias/StateHandler" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C9QueuedNet7NetNode12StateHandler">StateHandler</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>State handlers are always performed on referred state changes.
+If a state handler is blocked, it will also block the whole node for state changes.
+Only a state change to Error will be allowed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StateHandler</span> <span class="o">=</span> <span class="p">(</span><span class="kt">NetNode</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9QueuedNet7NetNode5stateOS_12NetNodeState"></a>
+                    <a name="//apple_ref/swift/Property/state" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9QueuedNet7NetNode5stateOS_12NetNodeState">state</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The node&rsquo;s state. Defined handlers will be performed on change.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Enums/NetNodeState.html">NetNodeState</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9QueuedNet7NetNode8rawValuex"></a>
+                    <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9QueuedNet7NetNode8rawValuex">rawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The represented raw value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">T</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9QueuedNet7NetNode18incomingTransitionGSqGCS_13NetTransitionx__"></a>
+                    <a name="//apple_ref/swift/Property/incomingTransition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9QueuedNet7NetNode18incomingTransitionGSqGCS_13NetTransitionx__">incomingTransition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The incoming/<q>previous</q> transition.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">incomingTransition</span><span class="p">:</span> <span class="kt"><a href="../Classes/NetTransition.html">NetTransition</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9QueuedNet7NetNode18outgoingTransitionGSqGCS_13NetTransitionx__"></a>
+                    <a name="//apple_ref/swift/Property/outgoingTransition" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9QueuedNet7NetNode18outgoingTransitionGSqGCS_13NetTransitionx__">outgoingTransition</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The outgoing/<q>next</q> transition. Can only be run if ´self´ is in Triggered state.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">outgoingTransition</span><span class="p">:</span> <span class="kt"><a href="../Classes/NetTransition.html">NetTransition</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9QueuedNet7NetNode11descriptionSS"></a>
+                    <a name="//apple_ref/swift/Property/description" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9QueuedNet7NetNode11descriptionSS">description</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A textual representation of <code>self</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNodecFT8rawValuex_GSqGS0_x__"></a>
+                    <a name="//apple_ref/swift/Method/init(rawValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNodecFT8rawValuex_GSqGS0_x__">init(rawValue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new node instance.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter rawValue The raw value to be represented.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawValue The raw value to be represented</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNode2onFT5stateOS_12NetNodeState7performFGS0_x_T_5queueCSo14OperationQueue_T_"></a>
+                    <a name="//apple_ref/swift/Method/on(state:perform:queue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNode2onFT5stateOS_12NetNodeState7performFGS0_x_T_5queueCSo14OperationQueue_T_">on(state:perform:queue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Guarantees a state handler to be run on internal state changes in a given queue.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter state The state, the state handler should be run in.
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter perform The state handler to be performed.
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter queue The queue the state handler should be run in.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="n"><a href="../Classes/NetNode.html#/s:vC9QueuedNet7NetNode5stateOS_12NetNodeState">state</a></span> <span class="nv">s</span><span class="p">:</span> <span class="kt"><a href="../Enums/NetNodeState.html">NetNodeState</a></span><span class="p">,</span> <span class="n">perform</span> <span class="nv">h</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/NetNode.html#/s:C9QueuedNet7NetNode12StateHandler">StateHandler</a></span><span class="p">,</span> <span class="nv">queue</span><span class="p">:</span> <span class="kt">OperationQueue</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state The state, the state handler should be run in</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>perform The state handler to be performed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>queue The queue the state handler should be run in</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNode5resetFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/reset()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNode5resetFT_T_">reset()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the node&rsquo;s state from Triggered to Ready. Will be ignored otherwise.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">reset</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNode3runFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/run()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNode3runFT_T_">run()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the node&rsquo;s state from Ready to Running. Will automatically transition to Finished. Will be ignored otherwise.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">run</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNode17triggerTransitionFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/triggerTransition()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNode17triggerTransitionFT_T_">triggerTransition()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the node&rsquo;s state from Finished to Triggered. Will be ignored otherwise.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">triggerTransition</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNode5errorFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/error()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNode5errorFT_T_">error()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets the node&rsquo;s state Error.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">error</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9QueuedNet7NetNode2onFT5stateOS_12NetNodeState7performFGS0_x_T__T_"></a>
+                    <a name="//apple_ref/swift/Method/on(state:perform:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9QueuedNet7NetNode2onFT5stateOS_12NetNodeState7performFGS0_x_T__T_">on(state:perform:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Guarantees a state handler to be run on internal state changes in the node&rsquo;s default operation queue.</p>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter state The state, the state handler should be run in.
+
+</div>
+
+<div class="aside aside-parameter">
+    <p class="aside-title">Parameter</p>
+    Parameter perform The state handler to be performed.
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="n"><a href="../Classes/NetNode.html#/s:vC9QueuedNet7NetNode5stateOS_12NetNodeState">state</a></span> <span class="nv">s</span><span class="p">:</span> <span class="kt"><a href="../Enums/NetNodeState.html">NetNodeState</a></span><span class="p">,</span> <span class="n">perform</span> <span class="nv">h</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/NetNode.html#/s:C9QueuedNet7NetNode12StateHandler">StateHandler</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state The state, the state handler should be run in</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>perform The state handler to be performed</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://github.com/vknabel/QueuedNet" target="_blank" rel="external">Valentin Knabel</a>. All rights reserved. (Last updated: 2016-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

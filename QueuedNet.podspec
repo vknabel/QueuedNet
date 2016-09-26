@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'QueuedNet'
-  s.version          = '1.0.1'
+  s.version          = '2.0.0'
   s.summary          = 'QueuedNet is a Swift framework to parallelize applications more declaratively.'
   s.description      = <<-DESC
 QueuedNet is a Swift framework to parallelize applications more declaratively and is comparable to a Petri Net.
@@ -21,5 +21,5 @@ QueuedNet is a Swift framework to parallelize applications more declaratively an
   s.osx.deployment_target = '10.9'
 	s.watchos.deployment_target = "2.0"
   s.tvos.deployment_target = "9.0"
-  s.source_files = 'Sources/*.swift'
+  s.source_files = 'Sources/QueuedNet/*.swift'
 end

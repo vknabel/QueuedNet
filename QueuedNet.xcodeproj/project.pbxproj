@@ -1,0 +1,277 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {};
+    objectVersion = 46;
+    rootObject = __RootObject_;
+    objects = {
+        __RootObject_ = {
+            isa = PBXProject;
+            attributes = {LastUpgradeCheck = 9999;};
+            buildConfigurationList = ___RootConfs_;
+            compatibilityVersion = 'Xcode 3.2';
+            developmentRegion = English;
+            hasScannedForEncodings = 0;
+            knownRegions = (en);
+            mainGroup = ___RootGroup_;
+            productRefGroup = ____Products_;
+            projectDirPath = '';
+            projectRoot = '';
+            targets = (______Target_QueuedNet, ______Target_QueuedNetTests);
+        };
+        '__PBXFileRef_Package.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'Package.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_QueuedNet.xcworkspace' = {
+            isa = PBXFileReference;
+            lastKnownFileType = folder;
+            name = 'QueuedNet.xcworkspace';
+            path = 'QueuedNet.xcworkspace';
+            sourceTree = '<group>';
+        };
+        ___RootGroup_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_Package.swift', _____Configs_, _____Sources_, '__PBXFileRef_QueuedNet.xcworkspace', Dependencies_, _______Tests_, ____Products_);
+            sourceTree = '<group>';
+        };
+        _______Group_QueuedNet = {
+            isa = PBXGroup;
+            name = 'QueuedNet';
+            path = 'Sources/QueuedNet';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Sources/QueuedNet/Internals.swift', '__PBXFileRef_Sources/QueuedNet/Net.swift', '__PBXFileRef_Sources/QueuedNet/NetBuilder.swift', '__PBXFileRef_Sources/QueuedNet/NetNode.swift', '__PBXFileRef_Sources/QueuedNet/NetRawTransition.swift', '__PBXFileRef_Sources/QueuedNet/NetTransition.swift');
+        };
+        '__PBXFileRef_Sources/QueuedNet/Internals.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'Internals.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/QueuedNet/Net.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'Net.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/QueuedNet/NetBuilder.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'NetBuilder.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/QueuedNet/NetNode.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'NetNode.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/QueuedNet/NetRawTransition.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'NetRawTransition.swift';
+            sourceTree = '<group>';
+        };
+        '__PBXFileRef_Sources/QueuedNet/NetTransition.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'NetTransition.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_QueuedNet = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_QueuedNet;
+            buildPhases = (CompilePhase_QueuedNet, ___LinkPhase_QueuedNet);
+            buildRules = ();
+            dependencies = ();
+            name = 'QueuedNet';
+            productName = QueuedNet;
+            productReference = _____Product_QueuedNet;
+            productType = 'com.apple.product-type.framework';
+        };
+        _____Product_QueuedNet = {
+            isa = PBXFileReference;
+            explicitFileType = 'wrapper.framework';
+            path = 'QueuedNet.framework';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_QueuedNet = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Sources/QueuedNet/Internals.swift', '__src_cc_ref_Sources/QueuedNet/Net.swift', '__src_cc_ref_Sources/QueuedNet/NetBuilder.swift', '__src_cc_ref_Sources/QueuedNet/NetNode.swift', '__src_cc_ref_Sources/QueuedNet/NetRawTransition.swift', '__src_cc_ref_Sources/QueuedNet/NetTransition.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Sources/QueuedNet/Internals.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/QueuedNet/Internals.swift';
+        };
+        '__src_cc_ref_Sources/QueuedNet/Net.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/QueuedNet/Net.swift';
+        };
+        '__src_cc_ref_Sources/QueuedNet/NetBuilder.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/QueuedNet/NetBuilder.swift';
+        };
+        '__src_cc_ref_Sources/QueuedNet/NetNode.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/QueuedNet/NetNode.swift';
+        };
+        '__src_cc_ref_Sources/QueuedNet/NetRawTransition.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/QueuedNet/NetRawTransition.swift';
+        };
+        '__src_cc_ref_Sources/QueuedNet/NetTransition.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/QueuedNet/NetTransition.swift';
+        };
+        ___LinkPhase_QueuedNet = {
+            isa = PBXFrameworksBuildPhase;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _______Confs_QueuedNet = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_QueuedNet, _ReleaseConf_QueuedNet);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_QueuedNet = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'QueuedNet.xcodeproj/QueuedNet_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; PRODUCT_BUNDLE_IDENTIFIER = 'QueuedNet'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Debug;
+        };
+        _ReleaseConf_QueuedNet = {
+            isa = XCBuildConfiguration;
+            buildSettings = { SWIFT_VERSION = '3.0'; LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'QueuedNet.xcodeproj/QueuedNet_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; PRODUCT_BUNDLE_IDENTIFIER = 'QueuedNet'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; OTHER_LDFLAGS = '$(inherited)'; };
+            name = Release;
+        };
+        __Dependency_QueuedNet = {
+            isa = PBXTargetDependency;
+            target = ______Target_QueuedNet;
+        };
+        _______Group_QueuedNetTests = {
+            isa = PBXGroup;
+            name = 'QueuedNetTests';
+            path = 'Tests/QueuedNetTests';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Tests/QueuedNetTests/QueuedNetTests.swift');
+        };
+        '__PBXFileRef_Tests/QueuedNetTests/QueuedNetTests.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            path = 'QueuedNetTests.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_QueuedNetTests = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_QueuedNetTests;
+            buildPhases = (CompilePhase_QueuedNetTests, ___LinkPhase_QueuedNetTests);
+            buildRules = ();
+            dependencies = (__Dependency_QueuedNet);
+            name = 'QueuedNetTests';
+            productName = QueuedNetTests;
+            productReference = _____Product_QueuedNetTests;
+            productType = 'com.apple.product-type.bundle.unit-test';
+        };
+        _____Product_QueuedNetTests = {
+            isa = PBXFileReference;
+            explicitFileType = 'compiled.mach-o.wrapper.cfbundle';
+            path = 'QueuedNetTests.xctest';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_QueuedNetTests = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Tests/QueuedNetTests/QueuedNetTests.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Tests/QueuedNetTests/QueuedNetTests.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Tests/QueuedNetTests/QueuedNetTests.swift';
+        };
+        ___LinkPhase_QueuedNetTests = {
+            isa = PBXFrameworksBuildPhase;
+            files = (_LinkFileRef_QueuedNet_via_QueuedNetTests);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _LinkFileRef_QueuedNet_via_QueuedNetTests = {
+            isa = PBXBuildFile;
+            fileRef = _____Product_QueuedNet;
+        };
+        _______Confs_QueuedNetTests = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_QueuedNetTests, _ReleaseConf_QueuedNetTests);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_QueuedNetTests = {
+            isa = XCBuildConfiguration;
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'QueuedNet.xcodeproj/QueuedNetTests_Info.plist'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
+            name = Debug;
+        };
+        _ReleaseConf_QueuedNetTests = {
+            isa = XCBuildConfiguration;
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '@loader_path/../Frameworks'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'QueuedNet.xcodeproj/QueuedNetTests_Info.plist'; EMBEDDED_CONTENT_CONTAINS_SWIFT = 'YES'; OTHER_LDFLAGS = '$(inherited)'; SWIFT_VERSION = '3.0'; };
+            name = Release;
+        };
+        __Dependency_QueuedNetTests = {
+            isa = PBXTargetDependency;
+            target = ______Target_QueuedNetTests;
+        };
+        '__PBXFileRef_QueuedNet.xcodeproj/Configs/Project.xcconfig' = {
+            isa = PBXFileReference;
+            lastKnownFileType = text.xcconfig;
+            path = 'QueuedNet.xcodeproj/Configs/Project.xcconfig';
+            sourceTree = '<group>';
+        };
+        _____Configs_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_QueuedNet.xcodeproj/Configs/Project.xcconfig');
+            name = Configs;
+            sourceTree = '<group>';
+        };
+        _____Sources_ = {
+            isa = PBXGroup;
+            children = (_______Group_QueuedNet);
+            name = Sources;
+            sourceTree = '<group>';
+        };
+        _______Tests_ = {
+            isa = PBXGroup;
+            children = (_______Group_QueuedNetTests);
+            name = Tests;
+            sourceTree = '<group>';
+        };
+       TestProducts_ = {
+            isa = PBXGroup;
+            children = (_____Product_QueuedNetTests);
+            name = Tests;
+            sourceTree = '<group>';
+        };
+        ____Products_ = {
+            isa = PBXGroup;
+            children = (TestProducts_, _____Product_QueuedNet);
+            name = Products;
+            sourceTree = '<group>';
+        };
+        _______Debug_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_QueuedNet.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Debug;
+        };
+        _____Release_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_QueuedNet.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Release;
+        };
+        ___RootConfs_ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (_______Debug_, _____Release_);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+    };
+}

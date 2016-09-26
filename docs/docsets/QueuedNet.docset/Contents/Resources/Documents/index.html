@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>QueuedNet  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="QueuedNet  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">QueuedNet Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">QueuedNet Reference</a>
+        <img id="carat" src="img/carat.png" />
+        QueuedNet  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Net.html">Net</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NetBuilder.html">NetBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NetNode.html">NetNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/NetTransition.html">NetTransition</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/NetNodeState.html">NetNodeState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P9QueuedNet14NetNodeRawType">NetNodeRawType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#queuednet' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='queuednet'>QueuedNet</h1>
+
+<p>QueuedNet is a Swift framework to parallelize applications more declaratively. </p>
+<a href='#example' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='example'>Example</h2>
+<pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">Test</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="kt">Printable</span><span class="p">,</span> <span class="kt">NetNodeRawType</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span>
+
+    <span class="k">var</span> <span class="nv">description</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">return</span> <span class="k">self</span><span class="o">.</span><span class="n">rawValue</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">net</span> <span class="o">=</span> <span class="kt">Net</span><span class="o">&lt;</span><span class="kt">Test</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">initials</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">a</span><span class="p">])</span> <span class="p">{</span> <span class="n">builder</span> <span class="k">in</span>
+    <span class="n">builder</span><span class="o">.</span><span class="nf">addTransition</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">a</span><span class="p">],</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="o">.</span><span class="n">c</span><span class="p">],</span> <span class="nv">perform</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"t1"</span><span class="p">)</span>
+      <span class="p">},</span> <span class="nv">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"e1"</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="n">builder</span><span class="o">.</span><span class="nf">addTransition</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="o">.</span><span class="n">c</span><span class="p">],</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">d</span><span class="p">],</span> <span class="nv">perform</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+        <span class="nf">println</span><span class="p">(</span><span class="s">"t2,3"</span><span class="p">)</span>
+      <span class="p">},</span> <span class="nv">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"e2"</span><span class="p">)</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre>
+<a href='#terms' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='terms'>Terms</h2>
+
+<table><thead>
+<tr>
+<th>Term</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Net</td>
+<td><code>Net</code></td>
+<td>Contains all nodes.</td>
+</tr>
+<tr>
+<td>Builder</td>
+<td><code>NetBuilder</code></td>
+<td>Used to build nets.</td>
+</tr>
+<tr>
+<td>Node</td>
+<td><code>NetNode</code></td>
+<td>Usually build with an enum type, e.g. <code>.StoringImage</code>.</td>
+</tr>
+<tr>
+<td>Transition</td>
+<td><code>NetTransition</code></td>
+<td>Connections between nodes.</td>
+</tr>
+<tr>
+<td>Node State</td>
+<td><code>NetNodeState</code></td>
+<td>One of <code>.Ready</code>, <code>.Running</code>, <code>.Finished</code>, <code>.Triggered</code>, <code>.Error</code></td>
+</tr>
+<tr>
+<td>Transition Handler</td>
+<td><code>NetTransition -&gt; Void</code></td>
+<td>Will be run if its transition&rsquo;s input nodes&rsquo; states are all set to <code>.Triggered</code>. Will be called in the transition&rsquo;s queue.</td>
+</tr>
+<tr>
+<td>Error Handler</td>
+<td><code>NetNode -&gt; Void</code></td>
+<td>Will be run if one of its transition&rsquo;s input node&rsquo;s state is set to <code>.Error</code>. Will be called in the transition&rsquo;s queue.</td>
+</tr>
+<tr>
+<td>State Handler</td>
+<td><code>NetNode -&gt; Void</code></td>
+<td>Will be called in a set queue if a node .</td>
+</tr>
+<tr>
+<td>Queue</td>
+<td><code>NSOperationQueue</code></td>
+<td>Queues run in their own thread, hence parallel.</td>
+</tr>
+</tbody></table>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="https://github.com/vknabel/QueuedNet" target="_blank" rel="external">Valentin Knabel</a>. All rights reserved. (Last updated: 2016-09-26)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
