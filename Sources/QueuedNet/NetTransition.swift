@@ -52,7 +52,7 @@ public class NetTransition<T: NetNodeRawType> {
     internal func run() {
         self.queue.addOperation({ () -> Void in
             let allTriggered = !self.isTransitioning && self.inputNodes.reduce(true) { (b: Bool, n: NetNode<T>) -> Bool in
-                b && n.state == .Triggered
+                b && n.state == .triggered
             }
 
             if allTriggered {
@@ -72,9 +72,9 @@ public class NetTransition<T: NetNodeRawType> {
     
     /// Runs the error handler with the failed node.
     internal func handleError(forNode node: NetNode<T>) {
-        if node.state == .Error {
+        if node.state == .error {
             self.errorHandler?(node)
-            assert(node.state == .Error, "The failed node could not be restored.")
+            assert(node.state == .error, "The failed node could not be restored.")
         }
         else {
             assertionFailure("Only failed nodes can be handled as error.")

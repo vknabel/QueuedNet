@@ -14,15 +14,15 @@ public protocol NetNodeRawType: CustomStringConvertible, Hashable { }
 /// The possible states of nodes. Nodes can only change their state if all handlers terminated.
 public enum NetNodeState: String, CustomStringConvertible {
     /// The ready state is the default state of all nodes. Only ready nodes can be run.
-    case Ready = "Ready"
+    case ready = "Ready"
     /// The running state. This state will automatically turn to finished if all handlers have terminated.
-    case Running = "Running"
+    case running = "Running"
     /// The finished state indicates all run-handlers have finished. Can be triggered.
-    case Finished = "Finished"
+    case finished = "Finished"
     /// The triggered state. Once all input nodes of a node's outgoing transition are triggered, the transition itself will be triggered.
-    case Triggered = "Triggered"
+    case triggered = "Triggered"
     /// An error state. Must be resolved by the outgoing transition.
-    case Error = "Error"
+    case error = "Error"
     
     /// A textual representation of `self`.
     public var description: String {
@@ -42,7 +42,7 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     public var operationQueue: OperationQueue = OperationQueue()
     
     /// The state.
-    private var _state: NetNodeState = .Ready {
+    private var _state: NetNodeState = .ready {
         willSet {
             assert(_queueCounter == 0, "\(self) can't set state to \(newValue).")
         }
@@ -53,7 +53,7 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     /// The represented value.
     private var _rawValue: T
     /// Stores all handlers for each node state.
-    private var _handlers: [NetNodeState:[(StateHandler, OperationQueue)]] = [.Ready:[], .Running:[], .Finished:[], .Error:[], .Triggered: []]
+    private var _handlers: [NetNodeState:[(StateHandler, OperationQueue)]] = [.ready:[], .running:[], .finished:[], .error:[], .triggered: []]
     
     /// Used to determine, wether all handler's have been run.
     private var _queueCounter: Int = 0 {
@@ -62,11 +62,11 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
                 if self._queueCounter == 0 {
                     self.operationQueue.addOperation {
                         switch self.state {
-                        case .Running:
-                            self._state = .Finished
-                        case .Triggered:
+                        case .running:
+                            self._state = .finished
+                        case .triggered:
                             self.outgoingTransition?.run()
-                        case .Error:
+                        case .error:
                             self.outgoingTransition?.handleError(forNode: self)
                         default:
                             break
@@ -150,37 +150,37 @@ public class NetNode<T: NetNodeRawType>: RawRepresentable, CustomStringConvertib
     
     /// Sets the node's state from Triggered to Ready. Will be ignored otherwise.
     public func reset() {
-        if self.state == .Triggered {
-            self._state = .Ready
+        if self.state == .triggered {
+            self._state = .ready
         }
         else {
-            assertionFailure("\(self.description) can't reset. Should be NetNode<\(NetNodeState.Finished), \(self.rawValue.description)>.")
+            assertionFailure("\(self.description) can't reset. Should be NetNode<\(NetNodeState.finished), \(self.rawValue.description)>.")
         }
     }
     
     /// Sets the node's state from Ready to Running. Will automatically transition to Finished. Will be ignored otherwise.
     public func run() {
-        if self.state == .Ready {
-            self._state = .Running
+        if self.state == .ready {
+            self._state = .running
         }
         else {
-            assertionFailure("\(self.description) can't run. Should be NetNode<\(NetNodeState.Finished), \(self.rawValue.description)>.")
+            assertionFailure("\(self.description) can't run. Should be NetNode<\(NetNodeState.finished), \(self.rawValue.description)>.")
         }
     }
     
     /// Sets the node's state from Finished to Triggered. Will be ignored otherwise.
     public func triggerTransition() {
-        if self.state == .Finished {
-            self._state = .Triggered
+        if self.state == .finished {
+            self._state = .triggered
         }
         else {
-            assertionFailure("\(self.description) can't trigger. Should be NetNode<\(NetNodeState.Finished), \(self.rawValue.description)>.")
+            assertionFailure("\(self.description) can't trigger. Should be NetNode<\(NetNodeState.finished), \(self.rawValue.description)>.")
         }
     }
     
     /// Sets the node's state Error.
     public func error() {
-        self._state = .Error
+        self._state = .error
     }
 }
 
