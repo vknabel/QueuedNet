@@ -79,12 +79,12 @@
     <span class="n">builder</span><span class="o">.</span><span class="nf">addTransition</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">a</span><span class="p">],</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="o">.</span><span class="n">c</span><span class="p">],</span> <span class="nv">perform</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
         <span class="nf">println</span><span class="p">(</span><span class="s">"t1"</span><span class="p">)</span>
       <span class="p">},</span> <span class="nv">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-        <span class="nf">println</span><span class="p">(</span><span class="s">"e1"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"e1"</span><span class="p">)</span>
     <span class="p">})</span>
-    <span class="n">builder</span><span class="o">.</span><span class="nf">addTransition</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="kt">B</span><span class="p">,</span> <span class="o">.</span><span class="n">c</span><span class="p">],</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">d</span><span class="p">],</span> <span class="nv">perform</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
+    <span class="n">builder</span><span class="o">.</span><span class="nf">addTransition</span><span class="p">(</span><span class="nv">from</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="o">.</span><span class="n">c</span><span class="p">],</span> <span class="nv">to</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="n">d</span><span class="p">],</span> <span class="nv">perform</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
         <span class="nf">println</span><span class="p">(</span><span class="s">"t2,3"</span><span class="p">)</span>
       <span class="p">},</span> <span class="nv">error</span><span class="p">:</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span>
-        <span class="nf">println</span><span class="p">(</span><span class="s">"e2"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="s">"e2"</span><span class="p">)</span>
     <span class="p">})</span>
 <span class="p">}</span>
 </code></pre>
