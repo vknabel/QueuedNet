@@ -23,7 +23,8 @@ protocol LinuxTestCase {
 
 
 class QueuedNetTests: XCTestCase, LinuxTestCase {
+    typealias TestCase = QueuedNetTests
 
-    static var allTests = []
+    static var allTests = [(String, (TestCase) -> () -> ())]()
     
 }
